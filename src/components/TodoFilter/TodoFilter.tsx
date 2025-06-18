@@ -1,9 +1,11 @@
 type Props = {
   query: string;
-  onChange: (option: string) => void;
+  onChange: (option: Filter) => void;
   onQueryChange: (option: string) => void;
   onClearQuery: () => void;
 };
+
+export type Filter = 'all' | 'active' | 'completed';
 
 export const TodoFilter: React.FC<Props> = ({
   query,
@@ -14,7 +16,10 @@ export const TodoFilter: React.FC<Props> = ({
   <form className="field has-addons">
     <p className="control">
       <span className="select">
-        <select data-cy="statusSelect" onChange={e => onChange(e.target.value)}>
+        <select
+          data-cy="statusSelect"
+          onChange={e => onChange(e.target.value as Filter)}
+        >
           <option value="all">All</option>
           <option value="active">Active</option>
           <option value="completed">Completed</option>

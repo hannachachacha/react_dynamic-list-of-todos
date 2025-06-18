@@ -4,7 +4,7 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 import { TodoList } from './components/TodoList';
-import { TodoFilter } from './components/TodoFilter';
+import { TodoFilter, Filter } from './components/TodoFilter';
 import { TodoModal } from './components/TodoModal';
 import { Loader } from './components/Loader';
 import { Todo } from './types/Todo';
@@ -14,7 +14,7 @@ export const App: React.FC = () => {
   const [allToDos, setAllToDos] = useState<Todo[]>([]);
   const [visibleToDos, setVisibleToDos] = useState<Todo[]>([]);
   const [isToDosLoading, setIsToDosLoading] = useState(false);
-  const [filterMode, setFilterMode] = useState('all');
+  const [filterMode, setFilterMode] = useState<Filter>('all');
   const [query, setQuery] = useState('');
   const [selectedToDo, setSelectedToDo] = useState<Todo | null>(null);
 
@@ -50,7 +50,7 @@ export const App: React.FC = () => {
     setVisibleToDos(filteredTodos);
   }, [allToDos, query, filterMode]);
 
-  function handleChange(option: string) {
+  function handleChange(option: Filter) {
     setFilterMode(option);
   }
 
